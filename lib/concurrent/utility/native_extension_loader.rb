@@ -1,4 +1,3 @@
-require 'concurrent/synchronization' # has to be loaded before JRuby extensions
 require 'concurrent/utility/engine'
 
 module Concurrent
@@ -38,6 +37,7 @@ module Concurrent
       end
 
       if Concurrent.on_jruby? && !@java_ext_loaded
+        require 'concurrent/synchronization/abstract_object' # has to be loaded before JRuby extensions
         begin
           require 'concurrent_ruby_ext'
           @java_ext_loaded = true
